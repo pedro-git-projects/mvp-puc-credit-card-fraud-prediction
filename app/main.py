@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
@@ -28,6 +27,7 @@ decision_tree_model = joblib.load(decision_tree_model_path)
 naive_bayes_model = joblib.load(naive_bayes_model_path)
 svm_model = joblib.load(svm_model_path)
 
+
 class Transaction(BaseModel):
     index: int
     time_elapsed: int
@@ -36,9 +36,11 @@ class Transaction(BaseModel):
     lat: float
     long: float
 
+
 @app.get("/")
 def read_root():
     return {"message": "API de Detecção de Fraude está funcionando!"}
+
 
 @app.post("/predict-knn")
 def predict_knn(transaction: Transaction):
@@ -46,11 +48,13 @@ def predict_knn(transaction: Transaction):
     prediction = knn_model.predict(input_data)
     return {"prediction": int(prediction[0])}
 
+
 @app.post("/predict-decision-tree")
 def predict_decision_tree(transaction: Transaction):
     input_data = pd.DataFrame([transaction.model_dump()])
     prediction = decision_tree_model.predict(input_data)
     return {"prediction": int(prediction[0])}
+
 
 @app.post("/predict-naive-bayes")
 def predict_naive_bayes(transaction: Transaction):
