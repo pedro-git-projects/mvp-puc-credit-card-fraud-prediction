@@ -41,8 +41,8 @@ O projeto inclui uma arquitetura preparada para ser executada em containers com 
 
 1. **Clone o repositório**:
    ```bash
-   git clone <link-do-repositorio>
-   cd <nome-do-repositorio>
+   git clone https://github.com/pedro-git-projects/mvp-puc-credit-card-fraud-prediction-backend/
+   cd mvp-puc-credit-card-fraud-prediction-backend
    ```
 
 2. **Execute o Docker Compose** para subir a aplicação em containers:
